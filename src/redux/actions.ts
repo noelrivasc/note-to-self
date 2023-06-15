@@ -66,9 +66,17 @@ export interface ActionCollectionSetActive extends Action {
   payload: string
 };
 
+const collectionSetActive = (uuid: string): ActionCollectionSetActive => {
+  return {
+    type: ActionTypes.collectionSetActive,
+    payload: uuid
+  }
+};
+
 export const Actions = {
   appSetLoaded,
   notesAddMultiple,
   noteSetActive,
   collectionsAddMultiple,
+  collectionSetActive
 };

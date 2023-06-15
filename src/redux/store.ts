@@ -78,8 +78,8 @@ const reducer = (state: State | undefined = initialState, action: AnyAction): St
       }
     };
 
-    case ActionTypes.activeCollectionSet: {
-      const a = action as ActionActiveCollectionSet;
+    case ActionTypes.collectionSetActive: {
+      const a = action as ActionCollectionSetActive;
 
       // Retrieve the collection props from the notes array
       // If it doesn't exist or if the uuid is found multiple times, 
@@ -89,7 +89,7 @@ const reducer = (state: State | undefined = initialState, action: AnyAction): St
       })
 
       // TODO: handle errors
-      if(!!collectionProps.length) {
+      if(!collectionProps.length) {
         throw new Error(`Can't set the collection with UUID ${a.payload} as active. Collection not found. Failed setting active collection.`);
       }
       else if(collectionProps.length > 1) {
