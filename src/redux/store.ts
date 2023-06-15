@@ -41,8 +41,8 @@ const reducer = (state: State | undefined = initialState, action: AnyAction): St
       }
     };
 
-    case ActionTypes.activeNoteSet: {
-      const a = action as ActionActiveNoteSet;
+    case ActionTypes.noteSetActive: {
+      const a = action as ActionNoteSetActive;
 
       // Retrieve the note props from the notes array
       // If it doesn't exist or if the uuid is found multiple times, 
@@ -52,7 +52,7 @@ const reducer = (state: State | undefined = initialState, action: AnyAction): St
       })
 
       // TODO: handle errors
-      if(!!noteProps.length) {
+      if(!noteProps.length) {
         throw new Error(`Can't set the note with UUID ${a.payload} as active. Note not found. Failed setting active note.`);
       }
       else if(noteProps.length > 1) {
