@@ -6,7 +6,7 @@
     {
       "uuid": "9a090cb4-9c89-4982-95db-e85d1be1db83",
       "name": "Cool down",
-      "image-url": "https://note-to-self-app.s3.us-west-2.amazonaws.com/note-images/haeckel-round-3.png",
+      "imageUrl": "https://note-to-self-app.s3.us-west-2.amazonaws.com/note-images/haeckel-round-3.png",
       "notes": [
         "18669d77-9439-4877-8c7b-4c8217deec7b",
         "6a2ad887-c1fd-4b0b-8332-9ee724aeda3b",
@@ -16,7 +16,7 @@
     {
       "uuid": "bd535ced-602c-4e72-bb23-8af1c16f6e53",
       "name": "Wake Up!",
-      "image-url": "https://note-to-self-app.s3.us-west-2.amazonaws.com/note-images/haeckel-round-3.png",
+      "imageUrl": "https://note-to-self-app.s3.us-west-2.amazonaws.com/note-images/haeckel-round-3.png",
       "notes": [
         "80ef588c-41bb-4846-94d0-93655f022b4c"
       ]
@@ -24,7 +24,7 @@
     {
       "uuid": "261cea44-a2b6-493a-a52a-ad547d59bcae",
       "name": "Focus",
-      "image-url": "https://note-to-self-app.s3.us-west-2.amazonaws.com/note-images/haeckel-round-3.png",
+      "imageUrl": "https://note-to-self-app.s3.us-west-2.amazonaws.com/note-images/haeckel-round-3.png",
       "notes": [
         "80ef588c-41bb-4846-94d0-93655f022b4c"
       ]
