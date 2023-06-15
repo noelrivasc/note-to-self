@@ -27,3 +27,11 @@ This is what I'll be using:
 * Redux
 * React Native (targets: iOS and Android)
 * The tooling around React Native
+* Some testing with Jest
+
+# Out of syllabus
+
+Stuff I'm not attempting to learn or use at this point:
+
+* ~~Jest or any other testing framework or technique~~
+    * 🤔 Actually, Jest will be the easiest way to test the store
