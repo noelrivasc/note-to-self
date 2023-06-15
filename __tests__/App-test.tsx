@@ -66,7 +66,7 @@ it('has active collection set on ActionCollectionSetActive', () => {
 
   const collection = sampleCollections.collections[0];
 
-  store.dispatch(Actions.collectionSetActive(collection));
+  store.dispatch(Actions.collectionSetActive(collection.uuid));
   const state_after = store.getState();
   expect(state_after.activeCollection).toEqual(collection);
 });
