@@ -53,6 +53,15 @@ export interface ActionCollectionsAddMultiple extends Action {
   }
 };
 
+const collectionsAddMultiple = (collections: CollectionData[]): ActionCollectionsAddMultiple => {
+  return {
+    type: ActionTypes.collectionsAddMultiple,
+    payload: {
+      collections
+    }
+  }
+};
+
 export interface ActionCollectionSetActive extends Action {
   payload: string
 };
@@ -61,4 +70,5 @@ export const Actions = {
   appSetLoaded,
   notesAddMultiple,
   noteSetActive,
+  collectionsAddMultiple,
 };
