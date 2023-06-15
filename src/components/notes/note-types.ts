@@ -13,13 +13,14 @@
 
 export type NoteData = {
   uuid: string,
+  type: string,
   name: string,
 }
 
 export type NoteAudioText1Data = NoteData & {
   text: string,
-  imageURL: string,
-  audioURL: string
+  imageUrl: string,
+  audioUrl: string
 }
 
 /**

@@ -1,6 +1,6 @@
-import { AnyAction } from 'redux';
-import { NoteAudioText1Data } from '../components/notes/NoteAudioText1';
+import { Action } from 'redux';
 import { CollectionData } from '../components/Collection';
+import { NoteAudioText1Data, AnyNoteData } from '../components/notes/note-types';
 
 export enum ActionTypes {
   appSetLoaded = "app/set-loaded",
@@ -10,7 +10,7 @@ export enum ActionTypes {
   activeCollectionSet = "active-collection/set"
 }
 
-export type ActionAppSetLoaded = AnyAction & {
+export interface ActionAppSetLoaded extends Action {
   payload: boolean
 }
 
@@ -21,26 +21,36 @@ const appSetLoaded = (): ActionAppSetLoaded => {
   }
 };
 
-export type ActionNotesAddMultiple = AnyAction & {
+export interface ActionNotesAddMultiple extends Action {
   payload: {
     notes: NoteAudioText1Data[]
   }
 };
 
-export type ActionActiveNoteSet = AnyAction & {
+const notesAddMultiple = (notes: AnyNoteData[]): ActionNotesAddMultiple => {
+  return {
+    type: ActionTypes.notesAddMultiple,
+    payload: {
+      notes
+    }
+  }
+};
+
+export interface ActionNoteSetActive extends Action {
   payload: string
 };
 
-export type ActionCollectionsAddMultiple = AnyAction & {
+export interface ActionCollectionsAddMultiple extends Action {
   payload: {
     collections: CollectionData[]
   }
 };
 
-export type ActionActiveCollectionSet = AnyAction & {
+export interface ActionCollectionSetActive extends Action {
   payload: string
 };
 
 export const Actions = {
   appSetLoaded,
+  notesAddMultiple,
 };

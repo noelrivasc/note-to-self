@@ -1,5 +1,5 @@
 import { createStore, AnyAction } from 'redux';
-import { ActionTypes, ActionNotesAddMultiple, ActionActiveNoteSet, ActionCollectionsAddMultiple, ActionActiveCollectionSet } from './actions';
+import { ActionTypes, ActionNotesAddMultiple, ActionNoteSetActive, ActionCollectionsAddMultiple, ActionCollectionSetActive } from './actions';
 import { AnyNoteData } from '../components/notes/note-types';
 import { CollectionData } from '../components/Collection';
 
@@ -37,7 +37,7 @@ const reducer = (state: State | undefined = initialState, action: AnyAction): St
           * saved locally for faster boot, but then loaded from a remote source
           * that may have newer content.
           */
-        notes: state.notes.concat(a.notes) 
+        notes: state.notes.concat(a.payload.notes) 
       }
     };
 
