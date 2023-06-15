@@ -9,6 +9,8 @@ import store from '../src/redux/store';
 import { Actions } from '../src/redux/actions';
 import sampleNotes from '../sample-data/notes.json';
 import sampleCollections from '../sample-data/collections.json';
+import { CollectionData } from '../src/components/Collection';
+import { AnyNoteData } from '../src/components/notes/note-types';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -30,7 +32,7 @@ it('has notes added to state on ActionNotesAddMultiple', () => {
   const state_before = store.getState();
   expect(state_before.notes.length).toEqual(0);
 
-  const notes = sampleNotes.notes;
+  const notes: AnyNoteData[] = sampleNotes.notes;
 
   store.dispatch(Actions.notesAddMultiple(notes));
   const state_after = store.getState();
@@ -41,7 +43,7 @@ it('has active note set on ActionNoteSetActive', () => {
   const state_before = store.getState();
   expect(state_before.activeNote).toBeUndefined();
 
-  const note = sampleNotes.notes[0];
+  const note: AnyNoteData = sampleNotes.notes[0];
 
   store.dispatch(Actions.noteSetActive(note.uuid));
   const state_after = store.getState();
@@ -52,7 +54,7 @@ it('has collections added to state on ActionCollectionsAddMultiple', () => {
   const state_before = store.getState();
   expect(state_before.collections.length).toEqual(0);
 
-  const collections = sampleCollections.collections;
+  const collections: CollectionData[] = sampleCollections.collections;
 
   store.dispatch(Actions.collectionsAddMultiple(collections));
   const state_after = store.getState();
@@ -64,7 +66,7 @@ it('has active collection set on ActionCollectionSetActive', () => {
   const state_before = store.getState();
   expect(state_before.activeCollection).toBeUndefined();
 
-  const collection = sampleCollections.collections[0];
+  const collection: CollectionData = sampleCollections.collections[0];
 
   store.dispatch(Actions.collectionSetActive(collection.uuid));
   const state_after = store.getState();
