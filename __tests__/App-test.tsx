@@ -43,7 +43,7 @@ it('has active note set on ActionNoteSetActive', () => {
 
   const note = sampleNotes.notes[0];
 
-  store.dispatch(Actions.notesAddMultiple(note));
+  store.dispatch(Actions.noteSetActive(note.uuid));
   const state_after = store.getState();
   expect(state_after.activeNote).toEqual(note);
 });
