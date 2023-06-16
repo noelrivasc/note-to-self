@@ -43,7 +43,7 @@ For an app being written in 2023, some technical decisions may be strange. Here'
 
 Instead of using functional components — which are what the new React docs recommend — I opted for class components. The reason is that I feel much more comfortable writing JS classes than writing React hooks, so if eventually I need to do something that isn't natural with React hooks, I would need to learn how to implement custom ones, and that doesn't seem trivial.
 
-## Not using Redux toolkig
+## Not using Redux toolkit
 
 I decided to use Redux the old way. My goal with this exercise is to understand the technologies and how they play together; by using some of toolkit's functions (ie: mutating the state directly and letting it figure out the correct way to produce a new state) I would be relying one some magic instead of understanding the foundation.
 
