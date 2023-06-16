@@ -1,3 +1,5 @@
+This repository contains a react native app that I'm using as an exercise to learn Typescript, React, React native, Redux and other related tools.
+
 ![App Mockup](docs/img/mockup.png)
 
 # About the app
@@ -49,4 +51,4 @@ I decided to use Redux the old way. My goal with this exercise is to understand 
 
 ## Using promises instead of async / await
 
-😳 I haven't had the time to read about async / await yet; found it easier to use Promises directly but may rewrite those portions later.
+I haven't had the time to read about async / await yet 🤷‍♂️; found it easier to use Promises directly but may rewrite those portions later.
