@@ -4,8 +4,6 @@
   * and theming utilities
   */
 
-import { StatusBar, Dimensions } from 'react-native';
-
 const theme = {
   navBarHeight: 80,
   palette: {
@@ -23,8 +21,3 @@ const theme = {
 }
 
 export default theme;
-
-export function getPanelHeight() {
-  const statusBarHeight = (StatusBar.currentHeight === undefined) ? 0 : StatusBar.currentHeight;
-  return Dimensions.get('window').height - theme.navBarHeight - statusBarHeight;
-}

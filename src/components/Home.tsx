@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { State } from '../redux/store';
 import { Actions } from '../redux/actions';
 import { CollectionData } from './Collection';
-import theme, { getPanelHeight } from '../globals/theme';
 import {
   StyleSheet, 
   View,
@@ -25,9 +24,8 @@ class Home extends Component<HomeProps, {}> {
   render() {
     const stylesheet = StyleSheet.create({
       layoutContainer: {
-        position: 'absolute',
         width: '100%',
-        height: getPanelHeight(),
+        flex: 1,
       },
       collectionContainer: {
         padding: 5,

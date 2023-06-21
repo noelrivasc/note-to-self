@@ -6,7 +6,6 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import { getPanelHeight } from '../globals/theme';
 
 export interface PanelProps extends PropsWithChildren {
   name: string,
@@ -31,7 +30,7 @@ class Panel extends Component<PanelProps, {}> {
         position: 'absolute',
         left,
         width: '100%',
-        height: getPanelHeight(),
+        height: '100%',
         backgroundColor: this.props.color,
       },
     });

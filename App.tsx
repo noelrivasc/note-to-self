@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 import {
-  SafeAreaView,
   StyleSheet,
-  StatusBar,
 } from 'react-native';
 
 import Panel from './src/components/Panel';
+import PanelContainer from './src/components/PanelContainer';
 import Home from './src/components/Home';
 import NavBar from './src/components/NavBar';
 import CollectionList from './src/components/CollectionList';
@@ -25,30 +25,36 @@ class App extends Component {
     const stylesheet = StyleSheet.create({
       appContainer: {
         flex: 1,
-        paddingTop: StatusBar.currentHeight,
       }
     });
-      return (
-        <Provider store={ store }>
+
+    return (
+      <Provider store={ store }>
+        <SafeAreaProvider>
+
           <SafeAreaView style={ stylesheet.appContainer }>
             <Home />
 
-            <Panel name={PanelNames.settings}>
-              <Settings />
-            </Panel>
-            <Panel name={PanelNames.history}>
-              <History />
-            </Panel>
-            <Panel color="coral" name={PanelNames.collectionList}>
-              <CollectionList />
-            </Panel>
+            <PanelContainer>
+              <Panel name={PanelNames.settings}>
+                <Settings />
+              </Panel>
+
+              <Panel name={PanelNames.history}>
+                <History />
+              </Panel>
+
+              <Panel color="coral" name={PanelNames.collectionList}>
+                <CollectionList />
+              </Panel>
+            </PanelContainer>
 
             <NavBar />
           </SafeAreaView>
-        </Provider>
+        </SafeAreaProvider>
+      </Provider>
     );
   }
-
 }
 
 export default App;
