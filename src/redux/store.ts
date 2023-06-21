@@ -1,106 +1,114 @@
 import { createStore, AnyAction } from 'redux';
-import { ActionTypes, ActionNotesAddMultiple, ActionNoteSetActive, ActionCollectionsAddMultiple, ActionCollectionSetActive } from './actions';
+import { ActionTypes, ActionAppShowPanel, ActionNotesAddMultiple, ActionAppShowNote, ActionCollectionsAddMultiple, ActionCollectionSetActive } from './actions';
 import { AnyNoteData } from '../components/notes/note-types';
 import { CollectionData } from '../components/Collection';
 
 export type State = {
   loaded: boolean,
-  notes: AnyNoteData[],
+  notes: Map<string, AnyNoteData>,
   activeNote?: AnyNoteData,
-  collections: CollectionData[],
+  collections: Map<string, CollectionData>,
   activeCollection?: CollectionData,
-  showPanel?: string, 
+  showPanel?: string | boolean, 
+  showNote: boolean,
 };
 
 const initialState = {
   loaded: false,
-  notes: [],
-  collections: [],
+  notes: new Map(),
+  collections: new Map(),
+  showPanel: false,
+  showNote: false,
 }
 
 const reducer = (state: State | undefined = initialState, action: AnyAction): State => {
   switch(action.type) {
+    case ActionTypes.wipeState: {
+      return initialState;
+    };
+
     case ActionTypes.appSetLoaded: {
       return {...state, loaded: true};
+    };
+
+    case ActionTypes.appShowPanel: {
+      return {
+        ...state, 
+        showPanel: action.payload, 
+        showNote: false
+      };
+    };
+
+    case ActionTypes.appShowNote: {
+      const a = action as ActionAppShowNote;
+
+      const noteProps = state.notes.get(a.payload);
+
+      if(typeof(noteProps) == 'undefined') {
+        throw new Error(`Can't set the note with UUID ${a.payload} as active. Note not found. Failed setting active note.`);
+      }
+
+      return {
+        ...state,
+        activeNote: noteProps,
+        showNote: true,
+      }
+    };
+
+    case ActionTypes.appGoHome: {
+      return {
+        ...state,
+        showPanel: false,
+        showNote: false,
+      }
     };
 
     case ActionTypes.notesAddMultiple: {
       const a = action as ActionNotesAddMultiple;
 
+      // The zen of not mutating the state...
+      const newNotes = new Map(state.notes);
+      
+      a.payload.notes.forEach((n) => {
+        newNotes.set(n.uuid, n);
+      });
+
       return {
         ...state,
-
-        /**
-          * NOTE that if multiple notes with the same UUID are added
-          * this will result in uuid duplicates and not an updated note.
-          *
-          * An insert or update behavior may be needed if the notes are
-          * saved locally for faster boot, but then loaded from a remote source
-          * that may have newer content.
-          */
-        notes: state.notes.concat(a.payload.notes) 
-      }
-    };
-
-    case ActionTypes.noteSetActive: {
-      const a = action as ActionNoteSetActive;
-
-      // Retrieve the note props from the notes array
-      // If it doesn't exist or if the uuid is found multiple times, 
-      // throw errors.
-      const noteProps = state.notes.filter((n) => {
-        return n.uuid == a.payload;
-      })
-
-      // TODO: handle errors
-      if(!noteProps.length) {
-        throw new Error(`Can't set the note with UUID ${a.payload} as active. Note not found. Failed setting active note.`);
-      }
-      else if(noteProps.length > 1) {
-        throw new Error(`Found more than one note with UUID ${a.payload}. Failed setting active note.`);
-      }
-      else {
-        return {
-          ...state,
-          activeNote: noteProps[0]
-        }
+        notes: newNotes 
       }
     };
 
     case ActionTypes.collectionsAddMultiple: {
       const a = action as ActionCollectionsAddMultiple;
+
+      // The zen of not mutating the state...
+      const newCollections = new Map(state.collections);
+
+      a.payload.collections.forEach((c) => {
+        return newCollections.set(c.uuid, c);
+      });
+
       return {
         ...state,
-
-        /**
-          * See note in notesAddMultiple above about potential UUID duplicates
-          */
-        collections: state.collections.concat(a.payload.collections)
+        collections: newCollections
       }
     };
 
     case ActionTypes.collectionSetActive: {
       const a = action as ActionCollectionSetActive;
 
-      // Retrieve the collection props from the notes array
-      // If it doesn't exist or if the uuid is found multiple times, 
-      // throw errors.
-      const collectionProps = state.collections.filter((c) => {
-        return c.uuid == a.payload;
-      })
+      // Retrieve the collection props from the notes map
+      // If it doesn't exist, throw an error 
+      const collectionProps = state.collections.get(a.payload);
 
-      // TODO: handle errors
-      if(!collectionProps.length) {
+      if(typeof(collectionProps) == 'undefined') {
         throw new Error(`Can't set the collection with UUID ${a.payload} as active. Collection not found. Failed setting active collection.`);
       }
-      else if(collectionProps.length > 1) {
-        throw new Error(`Found more than one collection with UUID ${a.payload}. Failed setting active collection.`);
-      }
-      else {
-        return {
-          ...state,
-          activeCollection: collectionProps[0]
-        }
+
+      return {
+        ...state,
+        activeCollection: collectionProps
       }
     };
   }

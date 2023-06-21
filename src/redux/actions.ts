@@ -3,10 +3,12 @@ import { CollectionData } from '../components/Collection';
 import { NoteAudioText1Data, AnyNoteData } from '../components/notes/note-types';
 
 export enum ActionTypes {
+  wipeState = 'app/wipe-state',
   appSetLoaded = "app/set-loaded",
   appShowPanel = "app/panel-show",
+  appShowNote = "app/note-show",
+  appGoHome = "app/go-home",
   notesAddMultiple = "notes/add-multiple",
-  noteSetActive = "notes/set-active",
   collectionsAddMultiple = "collections/add-multiple",
   collectionSetActive = "collections/set-active",
 }
@@ -33,6 +35,14 @@ const appShowPanel = (panelName: string): ActionAppShowPanel => {
   }
 };
 
+// export interface ActionAppGoHome extends Action {}
+
+const appGoHome = (): Action => {
+  return {
+    type: ActionTypes.appGoHome,
+  }
+};
+
 export interface ActionNotesAddMultiple extends Action {
   payload: {
     notes: NoteAudioText1Data[]
@@ -48,13 +58,13 @@ const notesAddMultiple = (notes: AnyNoteData[]): ActionNotesAddMultiple => {
   }
 };
 
-export interface ActionNoteSetActive extends Action {
+export interface ActionAppShowNote extends Action {
   payload: string
 };
 
-const noteSetActive = (uuid: string): ActionNoteSetActive => {
+const appShowNote = (uuid: string): ActionAppShowNote => {
   return {
-    type: ActionTypes.noteSetActive,
+    type: ActionTypes.appShowNote,
     payload: uuid
   };
 };
@@ -88,8 +98,9 @@ const collectionSetActive = (uuid: string): ActionCollectionSetActive => {
 export const Actions = {
   appSetLoaded,
   appShowPanel,
+  appShowNote,
+  appGoHome,
   notesAddMultiple,
-  noteSetActive,
   collectionsAddMultiple,
   collectionSetActive
 };
