@@ -4,10 +4,11 @@ import { NoteAudioText1Data, AnyNoteData } from '../components/notes/note-types'
 
 export enum ActionTypes {
   appSetLoaded = "app/set-loaded",
+  appShowPanel = "app/panel-show",
   notesAddMultiple = "notes/add-multiple",
   noteSetActive = "notes/set-active",
   collectionsAddMultiple = "collections/add-multiple",
-  collectionSetActive = "collections/set-active"
+  collectionSetActive = "collections/set-active",
 }
 
 export interface ActionAppSetLoaded extends Action {
@@ -18,6 +19,17 @@ const appSetLoaded = (): ActionAppSetLoaded => {
   return {
     type: ActionTypes.appSetLoaded,
     payload: true
+  }
+};
+
+export interface ActionAppShowPanel extends Action {
+  payload: string
+};
+
+const appShowPanel = (panelName: string): ActionAppShowPanel => {
+  return {
+    type: ActionTypes.appShowPanel,
+    payload: panelName
   }
 };
 
@@ -75,6 +87,7 @@ const collectionSetActive = (uuid: string): ActionCollectionSetActive => {
 
 export const Actions = {
   appSetLoaded,
+  appShowPanel,
   notesAddMultiple,
   noteSetActive,
   collectionsAddMultiple,

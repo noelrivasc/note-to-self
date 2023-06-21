@@ -3,18 +3,19 @@ import { ActionTypes, ActionNotesAddMultiple, ActionNoteSetActive, ActionCollect
 import { AnyNoteData } from '../components/notes/note-types';
 import { CollectionData } from '../components/Collection';
 
-type State = {
+export type State = {
   loaded: boolean,
   notes: AnyNoteData[],
   activeNote?: AnyNoteData,
   collections: CollectionData[],
-  activeCollection?: CollectionData
+  activeCollection?: CollectionData,
+  showPanel?: string, 
 };
 
 const initialState = {
   loaded: false,
   notes: [],
-  collections: []
+  collections: [],
 }
 
 const reducer = (state: State | undefined = initialState, action: AnyAction): State => {
