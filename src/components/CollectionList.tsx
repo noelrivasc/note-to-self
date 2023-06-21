@@ -31,13 +31,15 @@ class CollectionList extends Component<CollectionListProps, {}> {
       }
     });
 
-    const notes = this.props.notes.map((n) => {
+    const notes = this.props.notes.map((n: AnyNoteData): JSX.Element => {
+      const uuid = n.uuid;
+      const name = n.name;
       return (
-        <Pressable key={ `note-${n.uuid}` } onPress={ () => {
-          this.props.dispatch(Actions.appShowNote(n.uuid));
+        <Pressable key={ `note-${uuid}` } onPress={ () => {
+          this.props.dispatch(Actions.appShowNote(uuid));
         }}>
           <View style={ stylesheet.note }>
-            <Text>{ n.name }</Text>
+            <Text>{ name }</Text>
           </View>
         </Pressable>
       )
@@ -52,11 +54,30 @@ class CollectionList extends Component<CollectionListProps, {}> {
 };
 
 const mapStateToProps = (state: State)  => {
-  const notes = Array.from(state.notes).map((n) => {
-    return n[1];
-  })
+  const activeCollection = state.activeCollection;
 
-  return { notes };
+  if(typeof(activeCollection) != 'undefined') {
+    const collectionNoteIds: string[] = activeCollection.notes;
+    // const notes = [state.notes.get(collectionNoteIds[0])];
+    const notes: AnyNoteData[] = [];
+    for(let nid of collectionNoteIds) {
+      const note = state.notes.get(nid);
+      if(note != undefined) {
+        notes.push(note);
+      }
+    };
+    // const notes = collectionNoteIds.map((nid) => {
+    //   return state.notes.get(nid);
+    // })
+    // const filteredNotes: AnyNoteData[] = notes.filter((n) => {
+    //   return n !== undefined;
+    // });
+
+    return { notes: notes };
+  }
+  else {
+    return { notes: [] };
+  }
 };
 
 export default connect(mapStateToProps)(CollectionList);
