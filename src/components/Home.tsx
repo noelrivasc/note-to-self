@@ -40,7 +40,7 @@ class Home extends Component<HomeProps, {}> {
 
     const collectionElements = this.props.collections.map((c) => {
       return (
-        <Pressable onPress={ () => { 
+        <Pressable key={ `collection-${c.uuid}` } onPress={ () => { 
           this.props.dispatch(Actions.collectionSetActive(c.uuid));
           this.props.dispatch(Actions.appShowPanel(PanelNames.collectionList));
         }}>

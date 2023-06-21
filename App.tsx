@@ -20,7 +20,6 @@ class App extends Component {
   // TODO:
   // - Connect the app to the store, wire the "ready" property
   // - show a "loading" screen while the content loads
-  // - show the app (or a text) once the content is loaded
 
   render()  {
     const stylesheet = StyleSheet.create({

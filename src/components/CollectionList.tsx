@@ -56,16 +56,24 @@ class CollectionList extends Component<CollectionListProps, {}> {
 const mapStateToProps = (state: State)  => {
   const activeCollection = state.activeCollection;
 
-  if(typeof(activeCollection) != 'undefined') {
+  if(activeCollection !== undefined) {
     const collectionNoteIds: string[] = activeCollection.notes;
-    // const notes = [state.notes.get(collectionNoteIds[0])];
     const notes: AnyNoteData[] = [];
+
     for(let nid of collectionNoteIds) {
       const note = state.notes.get(nid);
       if(note != undefined) {
         notes.push(note);
       }
     };
+
+    // FUTURE LEARNING:
+    // I failed at appeasing the Compiler Gods.
+    //
+    // Couldn't get this working with array.map() and array.filter()
+    // TypeScript complained (understandably) that the results of those
+    // could be undefined. 
+    //
     // const notes = collectionNoteIds.map((nid) => {
     //   return state.notes.get(nid);
     // })

@@ -44,7 +44,7 @@ const reducer = (state: State | undefined = initialState, action: AnyAction): St
 
       const noteProps = state.notes.get(a.payload);
 
-      if(typeof(noteProps) == 'undefined') {
+      if(noteProps === undefined) {
         throw new Error(`Can't set the note with UUID ${a.payload} as active. Note not found. Failed setting active note.`);
       }
 
@@ -102,7 +102,7 @@ const reducer = (state: State | undefined = initialState, action: AnyAction): St
       // If it doesn't exist, throw an error 
       const collectionProps = state.collections.get(a.payload);
 
-      if(typeof(collectionProps) == 'undefined') {
+      if(collectionProps === undefined) {
         throw new Error(`Can't set the collection with UUID ${a.payload} as active. Collection not found. Failed setting active collection.`);
       }
 

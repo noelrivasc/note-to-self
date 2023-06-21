@@ -25,6 +25,6 @@ const theme = {
 export default theme;
 
 export function getPanelHeight() {
-  const statusBarHeight = (typeof(StatusBar.currentHeight) == 'undefined') ? 0 : StatusBar.currentHeight;
+  const statusBarHeight = (StatusBar.currentHeight === undefined) ? 0 : StatusBar.currentHeight;
   return Dimensions.get('window').height - theme.navBarHeight - statusBarHeight;
 }
