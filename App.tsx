@@ -1,21 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, { Component } from 'react';
-// import type {PropsWithChildren} from 'react';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
+
 import {
-  // SafeAreaView,
-  // ScrollView,
-  // StatusBar,
-  // StyleSheet,
-  Text,
-  // useColorScheme,
-  View,
+  SafeAreaView,
+  StyleSheet,
+  StatusBar,
 } from 'react-native';
+
+import Home from './src/components/Home';
+import NavBar from './src/components/NavBar';
+
+// import type {PropsWithChildren} from 'react';
+// import { PanelNames } from './src/globals/types';
 
 class App extends Component {
   // TODO:
@@ -24,8 +21,32 @@ class App extends Component {
   // - show the app (or a text) once the content is loaded
 
   render()  {
-    return (
-      <View><Text>This will be an app.</Text></View>
+    const stylesheet = StyleSheet.create({
+      appContainer: {
+        flex: 1,
+        paddingTop: StatusBar.currentHeight,
+      }
+    });
+      return (
+        <Provider store={ store }>
+          <SafeAreaView style={ stylesheet.appContainer }>
+            <Home />
+
+            {/*
+            <Panel name={PanelNames.settings}>
+              <Settings />
+            </Panel>
+            <Panel name={PanelNames.history}>
+              <History />
+            </Panel>
+            <Panel name={PanelNames.collectionList}>
+              <CollectionList />
+            </Panel>
+            */}
+
+            <NavBar />
+          </SafeAreaView>
+        </Provider>
     );
   }
 
