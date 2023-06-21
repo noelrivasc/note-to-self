@@ -40,7 +40,7 @@ class App extends Component {
             <Panel name={PanelNames.history}>
               <History />
             </Panel>
-            <Panel name={PanelNames.collectionList}>
+            <Panel color="coral" name={PanelNames.collectionList}>
               <CollectionList />
             </Panel>
 

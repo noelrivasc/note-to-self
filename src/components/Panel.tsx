@@ -33,7 +33,6 @@ class Panel extends Component<PanelProps, {}> {
         width: '100%',
         height: getPanelHeight(),
         backgroundColor: this.props.color,
-        opacity: 0.7
       },
     });
 
