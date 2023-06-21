@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import {
   Pressable,
   View,
-  Text,
   StyleSheet,
 } from 'react-native';
 import theme from '../globals/theme';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHouse, faClockRotateLeft, faGear } from '@fortawesome/free-solid-svg-icons';
-
+import NavBarTab from './NavBarTab';
+import { Actions } from '../redux/actions';
+import { PanelNames } from '../globals/types';
 
 interface NavBarProps {
   dispatch: Function
@@ -27,55 +27,36 @@ class NavBar extends Component<NavBarProps, {}> {
         position: 'absolute',
         bottom: 0,
         width: '100%',
-        height: theme.navBarHeight,
-        flexDirection: 'row',
+        height: theme.navBarHeight - 1,
         borderTopWidth: 1,
-        borderTopColor: 'black',
+        borderTopColor: '#CCCCCC',
+        flexDirection: 'row',
       },
-      tabContainer: {
-        flex: 1,
-      },
-      tab: {
-        alignItems: 'center',
-        paddingTop: 15
-      },
-      tabIcon: {
-        marginBottom: 5,
-        color: 'red'
-      },
-      tabText: {
-        color: 'green',
+      pressable: {
+        flex: 1
       }
     });
 
     return (
       <View style={ stylesheet.layoutContainer }>
-        <View style={ stylesheet.tabContainer }>
-          <Pressable>
-            <View style={ stylesheet.tab }>
-              <FontAwesomeIcon style={ stylesheet.tabIcon } size={ 24 } icon={ faHouse }/>
-              <Text>T</Text>
-            </View>
-          </Pressable>
-        </View>
 
-        <View style={ stylesheet.tabContainer }>
-          <Pressable>
-            <View style={ stylesheet.tab }>
-              <FontAwesomeIcon style={ stylesheet.tabIcon } size={ 24 } icon={ faClockRotateLeft }/>
-              <Text>Label</Text>
-            </View>
-          </Pressable>
-        </View>
+        <Pressable style={ stylesheet.pressable } onPress={ () => {
+          this.props.dispatch(Actions.appGoHome());
+        }}>
+          <NavBarTab label='Home' icon={ faHouse } />
+        </Pressable>
 
-        <View style={ stylesheet.tabContainer }>
-          <Pressable>
-            <View style={ stylesheet.tab }>
-              <FontAwesomeIcon style={ stylesheet.tabIcon } size={ 24 } icon={ faGear }/>
-              <Text>Label</Text>
-            </View>
-          </Pressable>
-        </View>
+        <Pressable style={ stylesheet.pressable } onPress={ () => {
+          this.props.dispatch(Actions.appShowPanel(PanelNames.history));
+        }}>
+          <NavBarTab label='History' icon={ faClockRotateLeft } />
+        </Pressable>
+
+        <Pressable style={ stylesheet.pressable } onPress={ () => {
+          this.props.dispatch(Actions.appShowPanel(PanelNames.settings));
+        }}>
+          <NavBarTab label='Settings' icon={ faGear } />
+        </Pressable>
       </View>
     );
   }

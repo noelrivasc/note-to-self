@@ -4,11 +4,9 @@ import { State } from '../redux/store';
 import theme, { getPanelHeight } from '../globals/theme';
 import {
   StyleSheet, 
-  Dimensions,
   View,
   Text,
   Pressable,
-  StatusBar,
 } from 'react-native';
 
 interface HomeProps {

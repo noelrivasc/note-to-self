@@ -8,11 +8,13 @@ import {
   StatusBar,
 } from 'react-native';
 
+import Panel from './src/components/Panel';
 import Home from './src/components/Home';
 import NavBar from './src/components/NavBar';
-
-// import type {PropsWithChildren} from 'react';
-// import { PanelNames } from './src/globals/types';
+import CollectionList from './src/components/CollectionList';
+import Settings from './src/components/Settings';
+import History from './src/components/History';
+import { PanelNames } from './src/globals/types';
 
 class App extends Component {
   // TODO:
@@ -32,7 +34,6 @@ class App extends Component {
           <SafeAreaView style={ stylesheet.appContainer }>
             <Home />
 
-            {/*
             <Panel name={PanelNames.settings}>
               <Settings />
             </Panel>
@@ -42,7 +43,6 @@ class App extends Component {
             <Panel name={PanelNames.collectionList}>
               <CollectionList />
             </Panel>
-            */}
 
             <NavBar />
           </SafeAreaView>
