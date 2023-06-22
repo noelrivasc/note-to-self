@@ -19,8 +19,6 @@ export default class PanelContainer extends Component<PropsWithChildren, {}> {
 
           if(insets) {
             top = insets.top;
-            console.log(Platform.OS);
-            console.log(insets.top);
             height = Dimensions.get('window').height -insets.bottom - insets.top - theme.navBarHeight;
 
             // HACK ALERT!

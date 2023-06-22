@@ -9,17 +9,18 @@ import {
   Pressable,
   Text,
 } from 'react-native';
-import { faArrowLeft, faHandPointLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
-export interface PanelProps extends PropsWithChildren {
+export interface PanelProps {
   dispatch: Function,
   name: string,
+  title: string,
   show?: boolean,
   color?: string,
 };
 
-class Panel extends Component<PanelProps, {}> {
+class Panel extends Component<PropsWithChildren<PanelProps>, {}> {
   public static defaultProps = {
    color: 'teal',
    show: false
@@ -74,7 +75,7 @@ class Panel extends Component<PanelProps, {}> {
           </Pressable>
 
           <View style={ stylesheet.titleContainer }>
-            <Text style={ stylesheet.title }>This is title.</Text>
+            <Text style={ stylesheet.title }>{ this.props.title }</Text>
           </View>
         </View>
         
@@ -86,7 +87,7 @@ class Panel extends Component<PanelProps, {}> {
   }
 };
 
-const mapStateToProps = (state: State, ownProps: PanelProps)  => {
+const mapStateToProps = (state: State, ownProps: PropsWithChildren<PanelProps>)  => {
   const show = ownProps.name == state.showPanel;
   return { show };
 };
