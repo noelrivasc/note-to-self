@@ -14,7 +14,7 @@
 import React, { Component } from 'react';
 import { 
   View, 
-  Text,
+  ScrollView,
   Pressable,
   StyleSheet,
 } from 'react-native';
@@ -60,32 +60,40 @@ class Note extends Component<NoteProps, {}> {
         padding: 15,
         pointerEvents: 'box-none',
       },
-      closeIcon: {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        padding: 10,
-      },
       noteModal: {
         flex: 1,
         borderRadius: 10,
         borderWidth: 1,
         borderColor: 'green',
-        backgroundColor: 'rgba(0, 0, 0, .2)',
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
         left,
         width: '100%',
+      },
+      closeIcon: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        padding: 10,
+        backgroundColor: 'rgba(150, 34, 34, 0.8)',
+        zIndex: 2
+      },
+      noteContainer: {
+        backgroundColor: 'green',
+        zIndex: 0,
       }
     });
 
     return (
       <View style={ stylesheet.noteModalContainer }>
         <View style={ stylesheet.noteModal }>
-        <Pressable style={ stylesheet.closeIcon } onPress={ () => {
-          this.props.dispatch(Actions.appGoHome());
-        }}>
-          <FontAwesomeIcon icon={ faClose } size={ 32 }/>
-        </Pressable>
-          { noteContents }
+          <Pressable style={ stylesheet.closeIcon } onPress={ () => {
+            this.props.dispatch(Actions.appGoHome());
+          }}>
+            <FontAwesomeIcon icon={ faClose } size={ 32 }/>
+          </Pressable>
+          <ScrollView style={ stylesheet.noteContainer }>
+            { noteContents }
+          </ScrollView>
         </View>
       </View>
     );
