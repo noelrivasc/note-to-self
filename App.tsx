@@ -14,6 +14,7 @@ import NavBar from './src/components/NavBar';
 import CollectionList from './src/components/CollectionList';
 import Settings from './src/components/Settings';
 import History from './src/components/History';
+import Note from './src/components/Note';
 import { PanelNames } from './src/globals/types';
 
 class App extends Component {
@@ -36,21 +37,25 @@ class App extends Component {
             <Home />
 
             <PanelContainer>
-              <Panel name={PanelNames.settings}>
+              <Panel name={PanelNames.settings} title="Settings">
+
                 <Settings />
               </Panel>
 
-              <Panel name={PanelNames.history}>
+              <Panel name={PanelNames.history} title="History">
                 <History />
               </Panel>
 
-              <Panel color="coral" name={PanelNames.collectionList}>
+              {/* TODO: pass the collection name to the panel */}
+              <Panel color="coral" name={PanelNames.collectionList} title="Collection">
                 <CollectionList />
               </Panel>
             </PanelContainer>
 
             <NavBar />
+            <Note />
           </SafeAreaView>
+
         </SafeAreaProvider>
       </Provider>
     );
