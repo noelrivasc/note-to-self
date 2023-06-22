@@ -80,6 +80,9 @@ class Note extends Component<NoteProps, {}> {
       noteContainer: {
         backgroundColor: 'green',
         zIndex: 0,
+      },
+      noteScrollContainer: {
+        minHeight: '100%',
       }
     });
 
@@ -91,7 +94,7 @@ class Note extends Component<NoteProps, {}> {
           }}>
             <FontAwesomeIcon icon={ faClose } size={ 32 }/>
           </Pressable>
-          <ScrollView style={ stylesheet.noteContainer }>
+          <ScrollView style={ stylesheet.noteContainer } contentContainerStyle={ stylesheet.noteScrollContainer } >
             { noteContents }
           </ScrollView>
         </View>
