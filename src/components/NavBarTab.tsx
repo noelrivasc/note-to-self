@@ -29,7 +29,6 @@ class NavBarTab extends Component<NavBarTabProps, {}> {
       },
       tabIcon: {
         marginBottom: 5,
-        color: 'red'
       },
       tabText: {
         color: 'green',

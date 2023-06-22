@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import type { PropsWithChildren } from 'react';
 import { State } from '../redux/store';
+import { Actions } from '../redux/actions';
 import { connect } from 'react-redux';
 import {
   View,
   StyleSheet,
+  Pressable,
+  Text,
 } from 'react-native';
+import { faArrowLeft, faHandPointLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 export interface PanelProps extends PropsWithChildren {
+  dispatch: Function,
   name: string,
   show?: boolean,
   color?: string,
@@ -15,7 +21,7 @@ export interface PanelProps extends PropsWithChildren {
 
 class Panel extends Component<PanelProps, {}> {
   public static defaultProps = {
-   color: 'red',
+   color: 'teal',
    show: false
   }
 
@@ -33,11 +39,48 @@ class Panel extends Component<PanelProps, {}> {
         height: '100%',
         backgroundColor: this.props.color,
       },
+      header: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        width: '100%',
+        borderBottomWidth: 1,
+        borderBottomColor: '#AAA',
+      },
+      iconContainer: {
+        padding: 12,
+        width: 48,
+        flex: 0,
+      },
+      titleContainer: {
+        flex: 1,
+        padding: 12,
+      },
+      title: {
+        fontSize: 20,
+        lineHeight: 22,
+      },
+      notesContainer: {
+      }
     });
 
     return (
       <View style={ stylesheet.layoutContainer }>
-        { this.props.children }
+
+        <View style={ stylesheet.header }>
+          <Pressable style={ stylesheet.iconContainer } onPress={ () => {
+            this.props.dispatch(Actions.appGoHome());
+          }}>
+            <FontAwesomeIcon icon={ faArrowLeft } size={ 24 } />
+          </Pressable>
+
+          <View style={ stylesheet.titleContainer }>
+            <Text style={ stylesheet.title }>This is title.</Text>
+          </View>
+        </View>
+        
+        <View style={ stylesheet.notesContainer }>
+          { this.props.children }
+        </View>
       </View>
     );
   }
