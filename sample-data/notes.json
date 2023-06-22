@@ -5,7 +5,7 @@
   "notes": [
     {
       "uuid": "18669d77-9439-4877-8c7b-4c8217deec7b",
-      "type": "BitAudioText1",
+      "type": "NoteAudioText1",
       "name": "5-minute body scan",
       "text": "The body-scan meditation is a soothing practice that cultivates calmness and presence by systematically focusing on and relaxing each part of the body, promoting deep relaxation and a heightened sense of body awareness.",
       "imageUrl": "https://note-to-self-app.s3.us-west-2.amazonaws.com/note-images/haeckel-round-2.png",
@@ -13,7 +13,7 @@
     },
     {
       "uuid": "6a2ad887-c1fd-4b0b-8332-9ee724aeda3b",
-      "type": "BitAudioText1",
+      "type": "NoteAudioText1",
       "name": "Progressive Muscle Relaxation",
       "text": "Progressive Muscle Relaxation (PMR) is a guided exercise that involves systematically tensing and releasing different muscle groups in the body, promoting deep relaxation, stress reduction, and body-mind connection.",
       "imageUrl": "https://note-to-self-app.s3.us-west-2.amazonaws.com/note-images/haeckel-round-1.png",
@@ -21,7 +21,7 @@
     },
     {
       "uuid": "80ef588c-41bb-4846-94d0-93655f022b4c",
-      "type": "BitAudioText1",
+      "type": "NoteAudioText1",
       "name": "Placeholder Note",
       "text": "This note is just a placeholder. It serves as a test that will be repeated over and over and over and over and over and over and over.",
       "imageUrl": "https://note-to-self-app.s3.us-west-2.amazonaws.com/note-images/haeckel-round-1.png",
