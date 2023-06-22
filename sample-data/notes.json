@@ -21,7 +21,7 @@
     },
     {
       "uuid": "80ef588c-41bb-4846-94d0-93655f022b4c",
-      "type": "NoteAudioText1",
+      "type": "InexistentNoteType",
       "name": "Placeholder Note",
       "text": "This note is just a placeholder. It serves as a test that will be repeated over and over and over and over and over and over and over.",
       "imageUrl": "https://note-to-self-app.s3.us-west-2.amazonaws.com/note-images/haeckel-round-1.png",
