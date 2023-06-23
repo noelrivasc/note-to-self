@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { 
   View, 
-  Text ,
+  Text,
+  Image,
   StyleSheet,
   Pressable,
 } from 'react-native';
@@ -9,6 +10,7 @@ import { connect } from 'react-redux';
 import { State } from '../redux/store';
 import { Actions } from '../redux/actions';
 import { AnyNoteData } from './notes/note-types';
+import theme from '../globals/theme';
 
 export interface CollectionListProps {
   dispatch: Function,
@@ -22,24 +24,45 @@ class CollectionList extends Component<CollectionListProps, {}> {
   
   render() {
     const stylesheet = StyleSheet.create({
+      noteWrapper: {
+        padding: 20,
+      },
       note: {
         padding: 15,
         borderWidth: 2,
-        borderColor: 'black',
-        backgroundColor: 'mauve',
-        marginBottom: 25,
-      }
+        borderColor: 'rgba(0, 0, 0, .6)',
+        backgroundColor: theme.palette.base_2,
+        borderRadius: 10,
+        shadowColor: theme.palette.base_0,
+        shadowOpacity: 0.25,
+        shadowRadius: 5,
+        elevation: 5,
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+      },
+      noteImage: {
+        width: 50,
+        height: 50,
+        flex: 0,
+        marginRight: 15,
+      },
+      noteTitle: {
+        flex: 1,
+        fontSize: 24,
+      },
     });
 
+    // TODO: move this into a new component, NoteCard
     const notes = this.props.notes.map((n: AnyNoteData): JSX.Element => {
       const uuid = n.uuid;
       const name = n.name;
       return (
-        <Pressable key={ `note-${uuid}` } onPress={ () => {
+        <Pressable key={ `note-${uuid}` } style={ stylesheet.noteWrapper } onPress={ () => {
           this.props.dispatch(Actions.appShowNote(uuid));
         }}>
           <View style={ stylesheet.note }>
-            <Text>{ name }</Text>
+            <Image source={{ uri: n.imageUrl }} style={ stylesheet.noteImage } />
+            <Text style={ stylesheet.noteTitle }>{ name }</Text>
           </View>
         </Pressable>
       )

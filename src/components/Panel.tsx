@@ -45,7 +45,8 @@ class Panel extends Component<PropsWithChildren<PanelProps>, {}> {
         alignItems: 'flex-start',
         width: '100%',
         borderBottomWidth: 1,
-        borderBottomColor: '#AAA',
+        borderBottomColor: 'rgba(0, 0, 0, 0.5)',
+        marginBottom: 25,
       },
       iconContainer: {
         padding: 12,
