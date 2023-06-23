@@ -16,6 +16,7 @@ import Settings from './src/components/Settings';
 import History from './src/components/History';
 import Note from './src/components/Note';
 import { PanelNames } from './src/globals/types';
+import theme from './src/globals/theme';
 
 class App extends Component {
   // TODO:
@@ -32,22 +33,21 @@ class App extends Component {
     return (
       <Provider store={ store }>
         <SafeAreaProvider>
-
           <SafeAreaView style={ stylesheet.appContainer }>
             <Home />
 
             <PanelContainer>
-              <Panel name={PanelNames.settings} title="Settings">
-
+              <Panel color={ theme.palette.base_2 } name={PanelNames.settings} title="Settings">
                 <Settings />
               </Panel>
 
-              <Panel name={PanelNames.history} title="History">
+              <Panel color={ theme.palette.accent_3 } name={PanelNames.history} title="History">
                 <History />
               </Panel>
 
-              {/* TODO: pass the collection name to the panel */}
-              <Panel color="coral" name={PanelNames.collectionList} title="Collection">
+              {/* TODO: pass the name of the collection being
+                  loaded to the panel */}
+              <Panel color={ theme.palette.base_1 }name={PanelNames.collectionList} title="Collection">
                 <CollectionList />
               </Panel>
             </PanelContainer>
