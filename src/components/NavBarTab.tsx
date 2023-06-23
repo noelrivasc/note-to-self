@@ -25,13 +25,14 @@ class NavBarTab extends Component<NavBarTabProps, {}> {
       },
       tab: {
         alignItems: 'center',
-        paddingTop: 15
+        paddingTop: 15,
       },
       tabIcon: {
         marginBottom: 5,
+        color: theme.palette.neutral,
       },
-      tabText: {
-        color: 'green',
+      tabLabel: {
+        color: theme.palette.accent_4,
       }
     });
 
@@ -39,7 +40,7 @@ class NavBarTab extends Component<NavBarTabProps, {}> {
       <View style={ stylesheet.tabContainer }>
         <View style={ stylesheet.tab }>
           <FontAwesomeIcon style={ stylesheet.tabIcon } size={ 24 } icon={ this.props.icon }/>
-          <Text>{ this.props.label }</Text>
+          <Text style={ stylesheet.tabLabel } >{ this.props.label }</Text>
         </View>
       </View>
     );

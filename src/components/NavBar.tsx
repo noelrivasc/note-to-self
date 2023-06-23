@@ -27,13 +27,14 @@ class NavBar extends Component<NavBarProps, {}> {
         position: 'absolute',
         bottom: 0,
         width: '100%',
-        height: theme.navBarHeight - 1,
-        borderTopWidth: 1,
-        borderTopColor: '#CCCCCC',
+        height: theme.navBarHeight - 2,
         flexDirection: 'row',
+        borderTopWidth: 2,
+        borderTopColor: theme.palette.base_2,
+        backgroundColor: theme.palette.base_0,
       },
       pressable: {
-        flex: 1
+        flex: 1,
       }
     });
 
