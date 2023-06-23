@@ -19,7 +19,7 @@ class Home extends Component<HomeProps, {}> {
   render() {
     const collectionElements = this.props.collections.map( (collection) => {
       return (
-        <Collection {...collection} />
+        <Collection key={ `colection-${collection.uuid}`} {...collection} />
       )
     });
 
@@ -32,14 +32,14 @@ class Home extends Component<HomeProps, {}> {
   }
 
   getStyleSheet() {
-    let height;
+    let height = Dimensions.get('window').height - theme.navBarHeight;
 
     // HACK ALERT!
     if(Platform.OS == 'android') {
-      height = Dimensions.get('window').height - theme.navBarHeight - 22;
+      height -= 22;
     }
     else {
-      height = Dimensions.get('window').height - theme.navBarHeight + 2;
+      height += 2;
     }
 
     const stylesheet = StyleSheet.create({
