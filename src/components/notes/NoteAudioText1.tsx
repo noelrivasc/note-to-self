@@ -58,6 +58,8 @@ export default class NoteAudioText1 extends Component<NoteAudioText1Data, NoteAu
         height: '50%',
         backgroundColor: 'skyblue',
       },
+      // TODO: check if this container is really
+      // necessary, or if the image can be positioned directly
       imageContainer: {
         width: this.state.imageSize,
         height: this.state.imageSize,
@@ -65,6 +67,10 @@ export default class NoteAudioText1 extends Component<NoteAudioText1Data, NoteAu
         left: this.state.imageLeft,
         top: this.state.imageTop,
         backgroundColor: 'powderblue',
+      },
+      image: {
+        width: this.state.imageSize,
+        height: this.state.imageSize,
       },
       audioPlayer: {
         borderRadius: 100,
@@ -79,7 +85,10 @@ export default class NoteAudioText1 extends Component<NoteAudioText1Data, NoteAu
         left: '65%',
       },
       textContainer: {
-        
+        padding: 20,
+      },
+      text: {
+        fontSize: 24,
       }
     });
 
@@ -89,7 +98,7 @@ export default class NoteAudioText1 extends Component<NoteAudioText1Data, NoteAu
       }}>
         <View style={ stylesheet.top }>
           <View style={ stylesheet.imageContainer }>
-            <Image source={{ uri: this.props.imageUrl }} width={ this.state.imageSize } height={ this.state.imageSize } />
+            <Image style={ stylesheet.image } source={{ uri: this.props.imageUrl }} />
           </View>
           <View style={ stylesheet.audioPlayer }>
             <Pressable onPress={ () => {
@@ -105,7 +114,7 @@ export default class NoteAudioText1 extends Component<NoteAudioText1Data, NoteAu
         </View>
         <View style={ stylesheet.bottom }>
           <ScrollView style={ stylesheet.textContainer }>
-            <Text>{ this.props.text }</Text>
+            <Text style={ stylesheet.text } >{ this.props.text }</Text>
           </ScrollView>
         </View>
       </View>
