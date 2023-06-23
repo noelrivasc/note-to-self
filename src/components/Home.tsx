@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { State } from '../redux/store';
-import { Actions } from '../redux/actions';
-import { CollectionData } from './Collection';
+import Collection, { CollectionData } from './Collection';
 import {
+  Dimensions,
+  Platform,
   StyleSheet, 
-  View,
-  Text,
-  Pressable,
+  ScrollView,
 } from 'react-native';
-import { PanelNames } from '../globals/types';
+import theme from '../globals/theme';
 
 interface HomeProps {
   dispatch: Function,
@@ -17,44 +16,43 @@ interface HomeProps {
 };
 
 class Home extends Component<HomeProps, {}> {
-  constructor(props: HomeProps) {
-    super(props);
-  }
-
   render() {
-    const stylesheet = StyleSheet.create({
-      layoutContainer: {
-        width: '100%',
-        flex: 1,
-      },
-      collectionContainer: {
-        padding: 5,
-        backgroundColor: 'teal',
-        borderWidth: 1,
-        borderColor: 'black',
-        marginBottom: 10
-      }
-    });
-
-    const collectionElements = this.props.collections.map((c) => {
+    const collectionElements = this.props.collections.map( (collection) => {
       return (
-        <Pressable key={ `collection-${c.uuid}` } onPress={ () => { 
-          this.props.dispatch(Actions.collectionSetActive(c.uuid));
-          this.props.dispatch(Actions.appShowPanel(PanelNames.collectionList));
-        }}>
-          <View style={ stylesheet.collectionContainer }>
-            <Text>{ c.name }</Text>
-          </View>
-        </Pressable>
+        <Collection {...collection} />
       )
     });
 
+    const stylesheet = this.getStyleSheet();
     return (
-      <View style={stylesheet.layoutContainer}>
-        <Text>This is Home.</Text>
+      <ScrollView style={ stylesheet.layoutContainer }>
         { collectionElements }
-      </View>
+      </ScrollView>
     );
+  }
+
+  getStyleSheet() {
+    let height;
+
+    // HACK ALERT!
+    if(Platform.OS == 'android') {
+      height = Dimensions.get('window').height - theme.navBarHeight - 22;
+    }
+    else {
+      height = Dimensions.get('window').height - theme.navBarHeight + 2;
+    }
+
+    const stylesheet = StyleSheet.create({
+      layoutContainer: {
+        position: 'absolute',
+        top: 0,
+        height: height,
+        width: '100%',
+        backgroundColor: theme.palette.base_1,
+      },
+    });
+
+    return stylesheet;
   }
 };
 
