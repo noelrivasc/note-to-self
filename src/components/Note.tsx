@@ -18,6 +18,7 @@ import {
   Pressable,
   StyleSheet,
 } from 'react-native';
+import theme from '../globals/theme';
 
 import { connect } from 'react-redux';
 import { State } from '../redux/store';
@@ -64,21 +65,22 @@ class Note extends Component<NoteProps, {}> {
         flex: 1,
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: 'green',
-        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+        borderColor: theme.palette.base_3,
+        backgroundColor: theme.palette.base_2,
         left,
         width: '100%',
       },
       closeIcon: {
         position: 'absolute',
-        top: 0,
-        right: 0,
-        padding: 10,
-        backgroundColor: 'rgba(150, 34, 34, 0.8)',
-        zIndex: 2
+        top: 10,
+        right: 10,
+        padding: 8,
+        zIndex: 2,
+        borderRadius: 100,
+        backgroundColor: theme.palette.base_3 + '99',
+        color: theme.palette.base_0,
       },
       noteContainer: {
-        backgroundColor: 'green',
         zIndex: 0,
       },
       noteScrollContainer: {

@@ -9,6 +9,7 @@ import {
   StyleSheet,
   LayoutRectangle,
 } from 'react-native';
+import theme from '../../globals/theme';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
@@ -52,11 +53,9 @@ export default class NoteAudioText1 extends Component<NoteAudioText1Data, NoteAu
     const stylesheet = StyleSheet.create({
       top: {
         height: '50%',
-        backgroundColor: 'green',
       },
       bottom: {
         height: '50%',
-        backgroundColor: 'skyblue',
       },
       // TODO: check if this container is really
       // necessary, or if the image can be positioned directly
@@ -66,23 +65,26 @@ export default class NoteAudioText1 extends Component<NoteAudioText1Data, NoteAu
         position: 'absolute',
         left: this.state.imageLeft,
         top: this.state.imageTop,
-        backgroundColor: 'powderblue',
       },
       image: {
         width: this.state.imageSize,
         height: this.state.imageSize,
       },
       audioPlayer: {
-        borderRadius: 100,
-        width: 80,
-        height: 80,
-        padding: 20,
-        borderWidth: 2,
-        borderColor: 'white',
-        backgroundColor: 'skyblue',
         position: 'absolute',
-        bottom: 0,
-        left: '65%',
+        bottom: 15,
+        left: '60%',
+        borderRadius: 100,
+        width: 60,
+        height: 60,
+        paddingLeft: 15,
+        paddingTop: 12,
+        borderWidth: 2,
+        borderColor: theme.palette.accent_4,
+        backgroundColor: theme.palette.accent_2,
+      },
+      audioPlayerIcon: {
+        color: theme.palette.neutral,
       },
       textContainer: {
         padding: 20,
@@ -106,8 +108,8 @@ export default class NoteAudioText1 extends Component<NoteAudioText1Data, NoteAu
             }}>
               {
                 (this.state.audioPlaying) ?
-                  <FontAwesomeIcon icon={ faPause } size={ 40 } /> :
-                  <FontAwesomeIcon icon={ faPlay } size={ 40 } />
+                  <FontAwesomeIcon style={ stylesheet.audioPlayerIcon } icon={ faPause } size={ 32 } /> :
+                  <FontAwesomeIcon style={ stylesheet.audioPlayerIcon } icon={ faPlay } size={ 32 } />
               }
             </Pressable>
           </View>
